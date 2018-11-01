@@ -54,6 +54,9 @@ Game.prototype.drawAll(){
    
 Game.prototype.finishGame(){
 }
+
+Game.prototype.checkCollision(){
+}
 ```
 
 ### player.js
