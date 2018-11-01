@@ -1,18 +1,32 @@
 # bubblebaby
 Bubble Baby is a game where the player controls the bubble, attempting to guide it between oncoming tubes without hitting them.
 
-MVP (DOM-CANVAS)
+## MVP (DOM-CANVAS)
 CANVAS. The MVP is a game where the player guides a ball through columns. 
 
-Backlog
+## Backlog
+```
 Sprites
 Background
 Bobbing effect of bubble
 Sound effects
 Choose colour of bubble
+```
 
-Data Structure
-game.js
+## Data Structure
+### main.js
+```
+buildDom();
+buildSplash();
+destroySplash();
+buildGameScreen();
+destroyGameScreen();
+buildGameOverScreen();
+destroyGameOverScreen();
+```
+
+### game.js
+```
 Game (){
   this.player;
   this.column;
@@ -40,9 +54,10 @@ Game.prototype.drawAll(){
    
 Game.prototype.finishGame(){
 }
+```
 
-
-player.js
+### player.js
+```
 Player(){
   this.x;
   this.y;
@@ -61,8 +76,10 @@ Player.prototype.draw(){
 
 Player.prototype.setDirection(){
 }
+```
 
-column.js
+### column.js
+```
 Column(){
   this.x;
   this.y;
@@ -77,8 +94,9 @@ Column.prototype.update(){
 
 Column.prototype.draw(){
 }
-
-States and State Transitions
+```
+## States and State Transitions
+```
 - splashScreen()
   - destroyGameOver(if)
   - buildSplash()
@@ -96,5 +114,35 @@ States and State Transitions
   - destroyGame()
   - buildGameOverScreen()
   - addEventListener( if splashScreen, else startGame) 
+  ```
+
+  ## Task
   
-  Task
+  
+  - Create repo in GitHub
+  - Create files on VSC, use cheat sheet templates
+  - Main - buildDOM( );
+  - Main - buildSplash();
+  - Main - destroySplash();
+  - Main - buildGameScreen(); 
+  - Main - destroyGameScreen(); 
+  - Main - buildGameOverScreen();
+  - Main - destroyGameOverScreen();
+  - Game - 3 state transitions
+  - Game - buildDom();
+  - Game - function Start(); - loop
+  - Game - finishGame();
+  - Game - function Game();
+  - Player - function Player();
+  - Game - function Game(); (check player exists)
+  - Player - function Player(); (movement)
+  - Game - function Game(); (check player moves)
+  - Columns - function Column ();
+  - Game - function Game (); (check column exists)
+  - Columns - function Column (); 
+  - Game - function Game (); (check column moves)
+  - Game - checkCollision(); 
+  - Game - finishGame(); (test run)
+
+
+
