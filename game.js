@@ -2,7 +2,7 @@
 
 function Game(canvasElement) {
   this.player = null;
-  this.enemies = [];
+  this.pipes = [];
   this.canvasElement = canvasElement;
   this.gameIsOver = false;
   this.collision = false;
@@ -16,33 +16,48 @@ Game.prototype.start = function () {
       console.log('jump');
       this.player.setDirection(-1);
 
-      setTimeout(function() {
+      setTimeout(function () {
         this.player.setDirection(1);
       }.bind(this), 500)
 
     }
   }.bind(this)
-  
+
   document.addEventListener('keyup', this.handleKeyUp);
-  
+
   this.startLoop();
 
 }
 
 Game.prototype.startLoop = function () {
   this.player = new Player(this.canvasElement);
-  this.column = new Column(this.canvasElement);
-  
+  this.pipe = new Pipe(this.canvasElement);
+  this.pipes.push(new Pipe(this.canvasElement));
 
+  var frames = 0;
 
   var loop = function () {
 
-    console.log('testing');
+    frames++;
+    if (frames % 80 === 0) {
+      this.pipes.push(new Pipe(this.canvasElement));
+    }
+
+    console.log(frames);
+    /* if (Math.random() > 0.97) {
+      this.pipes.push(new Pipe(this.canvasElement));
+    }
+*/
+    /*window.setInterval(function(){
+      this.pipes.push(new Pipe(this.canvasElement));
+    }.bind(this), 2000); */
 
     this.updateAll();
     this.clearAll();
     this.drawAll();
     this.checkCollision();
+
+
 
     if (this.collision) {
       this.gameIsOver = true;
@@ -61,7 +76,7 @@ Game.prototype.startLoop = function () {
 
 Game.prototype.updateAll = function () {
   this.player.update();
-  this.column.update();
+  this.pipe.update();
 }
 
 Game.prototype.clearAll = function () {
@@ -70,20 +85,25 @@ Game.prototype.clearAll = function () {
 
 Game.prototype.drawAll = function () {
   this.player.draw();
-  this.column.draw();
-}
+  //this.pipe.draw();
 
-//hi main, please close game screen
-Game.prototype.saveGameOverCallback = function (callback) {
-  //ok game, i will
-  this.gameOverCallback = callback;
-}
+  this.pipes.forEach(function (pipe) {
+    pipe.draw();
+    pipe.update();
+  });
 
-Game.prototype.finishGame = function () {
-  this.gameOverCallback();
-  this.gameIsOver = true;
-}
+  //hi main, please close game screen
+  Game.prototype.saveGameOverCallback = function (callback) {
+    //ok game, i will
+    this.gameOverCallback = callback;
+  }
 
-Game.prototype.checkCollision = function () {
-  this.collision = this.player.checkCollision();
+  Game.prototype.finishGame = function () {
+    this.gameOverCallback();
+    this.gameIsOver = true;
+  }
+
+  Game.prototype.checkCollision = function () {
+    this.collision = this.player.checkCollision();
+  };
 }
