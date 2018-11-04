@@ -30,7 +30,7 @@ Player.prototype.draw = function() {
     this.ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
 }
 
-Player.prototype.checkCollision = function() {
+Player.prototype.hasCollidedWithCeilOrFloor = function() {
     var collision;
     if (this.y >= this.canvasElement.height - this.size/2) {
         collision = true;

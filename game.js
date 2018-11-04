@@ -43,15 +43,6 @@ Game.prototype.startLoop = function () {
       this.pipes.push(new Pipe(this.canvasElement));
     }
 
-    console.log(frames);
-    /* if (Math.random() > 0.97) {
-      this.pipes.push(new Pipe(this.canvasElement));
-    }
-*/
-    /*window.setInterval(function(){
-      this.pipes.push(new Pipe(this.canvasElement));
-    }.bind(this), 2000); */
-
     this.updateAll();
     this.clearAll();
     this.drawAll();
@@ -85,25 +76,28 @@ Game.prototype.clearAll = function () {
 
 Game.prototype.drawAll = function () {
   this.player.draw();
-  //this.pipe.draw();
 
-  this.pipes.forEach(function (pipe) {
-    pipe.draw();
-    pipe.update();
-  });
-
-  //hi main, please close game screen
-  Game.prototype.saveGameOverCallback = function (callback) {
-    //ok game, i will
-    this.gameOverCallback = callback;
+  for (var i = 0; i < this.pipes.length; i++) {
+    this.pipes[i].draw();
+    this.pipes[i].update();
   }
 
-  Game.prototype.finishGame = function () {
-    this.gameOverCallback();
-    this.gameIsOver = true;
-  }
-
-  Game.prototype.checkCollision = function () {
-    this.collision = this.player.checkCollision();
-  };
 }
+Game.prototype.saveGameOverCallback = function (callback) {
+  this.gameOverCallback = callback;
+}
+
+Game.prototype.finishGame = function () {
+  this.gameOverCallback();
+  this.gameIsOver = true;
+}
+
+Game.prototype.checkCollision = function () {
+  this.collision = this.player.hasCollidedWithCeilOrFloor();
+
+  for (var i = 0; i < this.pipes.length; i++) {
+    if (this.pipes[i].hasCollidedWithPlayer(this.player)) {
+      this.collision = true;
+    }
+  };
+};

@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 function buildDOM(html) {
   var div = document.createElement('div');
   div.innerHTML = html;
@@ -16,8 +14,6 @@ function main() {
 
   var startButton;
   var restartButton;
-
-
 
   function buildSplash() {
     splashScreen = buildDOM(`
@@ -54,7 +50,6 @@ function main() {
     game.start();
 
     game.saveGameOverCallback(destroyGameScreen);
-
   }
 
   function destroyGameScreen() {
@@ -83,12 +78,7 @@ function main() {
     buildGameScreen();
   }
 
-
   buildSplash();
-
-  //destroyGameScreen();
-  //buildGameOverScreen();
-
 }
 
 window.addEventListener('load', main);
