@@ -6,24 +6,26 @@ function Player(canvasElement) {
     this.y = this.canvasElement.height / 2;
     this.size = 20;
     this.ctx = canvasElement.getContext('2d');
-    this.fallSpeed = 0;
     this.ySpeed = 3;
     this.direction = 1
+
+    this.gravity = 0.6;
+    this.lift = -15;
+    this.velocity = 0;
      
 }
 //MOVEMENT
 Player.prototype.update = function(){
-    this.fallSpeed += 0.01;
-    this.y += this.direction * this.ySpeed;
+    this.velocity += this.gravity;
+    this.velocity *= 0.9;
+    this.y += this.velocity;
 }
 
-Player.prototype.setDirection = function(direction){
-    this.direction = direction;
+Player.prototype.jump = function(){
+    this.velocity += this.lift;
+    console.log('jumping');
 }
 
-Player.prototype.setSpeed = function(speed){
-    this.speed = speed;
-}
 
 Player.prototype.draw = function() {
     this.ctx.fillStyle = 'rgba(255, 0, 0, 0.6)';
@@ -39,6 +41,8 @@ Player.prototype.hasCollidedWithCeilOrFloor = function() {
     }
     return collision;
 }
+
+
 
 
 

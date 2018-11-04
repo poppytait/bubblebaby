@@ -11,14 +11,11 @@ function Game(canvasElement) {
 Game.prototype.start = function () {
 
   this.ctx = this.canvasElement.getContext('2d');
+
   this.handleKeyUp = function (event) {
     if (event.key === ' ') {
       console.log('jump');
-      this.player.setDirection(-1);
-
-      setTimeout(function () {
-        this.player.setDirection(1);
-      }.bind(this), 500)
+    this.player.jump();
 
     }
   }.bind(this)
