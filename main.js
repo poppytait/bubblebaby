@@ -39,9 +39,10 @@ function main() {
 
   function buildGameScreen() {
     gameScreen = buildDOM(`
-      <main>
-        <p>test</p>     
-        <canvas width="640px" height="480px"></canvas>   
+      <main>   
+        <canvas id="game-screen" width="774px" height="435px">
+    <img id="source" src="bubbles.png">
+        </canvas>   
       </main>
     `);
     document.body.prepend(gameScreen);
@@ -60,7 +61,8 @@ function main() {
   function buildGameOverScreen() {
     gameOverScreen = buildDOM(`
       <main>
-        <h1>Game Over</h1>
+        <canvas id="game-over-screen" width="774px" height = 435px">
+        </canvas>
         <button>Restart</button>
       </main>  
     `);

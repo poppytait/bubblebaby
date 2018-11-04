@@ -4,6 +4,7 @@ html {
     box-sizing: border-box;
 }
 
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
@@ -11,8 +12,30 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background: linear-gradient(45deg, #FFC6D9,#FFBCD2);
 }
 
 canvas {
-    border: 1px solid black;
+  /*   border: 1px solid black; */
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-image: url("background.png");
 }
+
+#game-screen {
+
+}
+
+#game-over-screen {
+    background-image: url("https://66.media.tumblr.com/6dbfd476b8ebdd4e7e372631efc79758/tumblr_ojqnk4OzgA1udh5n8o1_500.gif");
+    background-size: 774px 435px;
+}
+
+#image {
+    height: 20px;
+    width: 20px;
+     background: url(bubbles.png) 0px 0px;
+  }

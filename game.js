@@ -59,7 +59,6 @@ Game.prototype.startLoop = function () {
   }.bind(this);
 
   loop();
-
 }
 
 Game.prototype.updateAll = function () {
