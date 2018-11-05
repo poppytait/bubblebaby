@@ -43,7 +43,7 @@ function main() {
   function buildGameScreen() {
     gameScreen = buildDOM(`
       <main>   
-      <div>
+      <div class = "score-div">
       <p>Score</p>
       <p class="score">0 </p>
       </div>

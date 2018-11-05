@@ -1,4 +1,11 @@
 /* ---- reset ---- */
+@font-face {
+    font-family: 'powerpuff_girlsregular';
+    src: url('fonts/powerpuff_girls_font-webfont.woff2') format('woff2'),
+         url('fonts/powerpuff_girls_font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html {
     box-sizing: border-box;
@@ -13,6 +20,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(45deg, #FFC6D9,#FFBCD2);
+    font-family: 'powerpuff_girlsregular';
 }
 
 canvas {
@@ -54,15 +62,22 @@ canvas {
 
 button {
 position: absolute;
+font-family: 'powerpuff_girlsregular';
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #555;
   color: white;
-  font-size: 16px;
-  padding: 12px 24px;
+  font-size: 20px;
+  padding: 7px 20px 15px 20px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.score-div {
+    width: 774px;
+    margin: 0 auto; 
+    text-align: right;
 }

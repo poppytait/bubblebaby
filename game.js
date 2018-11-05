@@ -108,10 +108,8 @@ Game.prototype.keepScore = function() {
       
     } console.log(score);
   };
-
-  
 }
-//addition
+
 Game.prototype.onPoints = function (callback) {
   this.updateScore = callback;
 }
