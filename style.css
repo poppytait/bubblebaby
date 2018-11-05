@@ -16,17 +16,23 @@ body {
 }
 
 canvas {
-  /*   border: 1px solid black; */
+    margin-top: 100px;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    background-image: url("background.png");
+    
+}
+
+#splash-screen {
+    background-image: url("https://media.giphy.com/media/Z4JWZ6E0LN9Pq/giphy.gif");
+    background-size: 774px 435px;
+    
 }
 
 #game-screen {
-
+    background-image: url("background.png");
 }
 
 #game-over-screen {
@@ -39,3 +45,24 @@ canvas {
     width: 20px;
      background: url(bubbles.png) 0px 0px;
   }
+
+#game-over-container {
+
+}
+
+
+
+button {
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}

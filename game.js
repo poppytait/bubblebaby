@@ -6,7 +6,10 @@ function Game(canvasElement) {
   this.canvasElement = canvasElement;
   this.gameIsOver = false;
   this.collision = false;
+  this.score = 0; 
 }
+
+var score = this.score;
 
 Game.prototype.start = function () {
 
@@ -14,7 +17,6 @@ Game.prototype.start = function () {
 
   this.handleKeyUp = function (event) {
     if (event.key === ' ') {
-      console.log('jump');
     this.player.jump();
 
     }
@@ -42,10 +44,9 @@ Game.prototype.startLoop = function () {
 
     this.updateAll();
     this.clearAll();
+    this.keepScore();
     this.drawAll();
     this.checkCollision();
-
-
 
     if (this.collision) {
       this.gameIsOver = true;
@@ -97,3 +98,20 @@ Game.prototype.checkCollision = function () {
     }
   };
 };
+
+Game.prototype.keepScore = function() {
+  for (var i = 0; i < this.pipes.length; i++) {
+    if (this.player.x === this.pipes[i].x + this.pipes[i].width/2) {
+      var score = this.score ++;
+      // addition
+      this.updateScore(score);
+      
+    } console.log(score);
+  };
+
+  
+}
+//addition
+Game.prototype.onPoints = function (callback) {
+  this.updateScore = callback;
+}

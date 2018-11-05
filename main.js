@@ -11,14 +11,17 @@ function main() {
   var splashScreen;
   var gameScreen;
   var gameOverScreen;
-
   var startButton;
   var restartButton;
+  //add
+  var scoreElement;
 
   function buildSplash() {
     splashScreen = buildDOM(`
       <main>
-        <h1>bubblebaby</h1>
+      <canvas id="splash-screen" width="774px" height="435px">
+      
+          </canvas>  
         <button>Start</button>
       </main>
     `)
@@ -40,17 +43,31 @@ function main() {
   function buildGameScreen() {
     gameScreen = buildDOM(`
       <main>   
+      <div>
+      <p>Score</p>
+      <p class="score">0 </p>
+      </div>
         <canvas id="game-screen" width="774px" height="435px">
     <img id="source" src="bubbles.png">
         </canvas>   
       </main>
     `);
     document.body.prepend(gameScreen);
+    //add
+    scoreElement = document.querySelector('.score');
     var canvasElement = document.querySelector('canvas');
     var game = new Game(canvasElement);
+    //addition
+    game.onPoints(updateScore);
+
     game.start();
 
     game.saveGameOverCallback(destroyGameScreen);
+  }
+
+  function updateScore(score) {
+    
+    scoreElement.innerText = score;
   }
 
   function destroyGameScreen() {
@@ -61,9 +78,12 @@ function main() {
   function buildGameOverScreen() {
     gameOverScreen = buildDOM(`
       <main>
+      <div id ="game-over-container">
         <canvas id="game-over-screen" width="774px" height = 435px">
+        
         </canvas>
-        <button>Restart</button>
+        <button id="game-over-btn">Restart</button>
+        </div>
       </main>  
     `);
 

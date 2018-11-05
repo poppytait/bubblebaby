@@ -8,13 +8,11 @@ function Player(canvasElement) {
     this.ctx = canvasElement.getContext('2d');
     this.ySpeed = 3;
     this.direction = 1
-
     this.gravity = 0.6;
     this.lift = -15;
     this.velocity = 0;
-
 }
-//MOVEMENT
+
 Player.prototype.update = function () {
     this.velocity += this.gravity;
     this.velocity *= 0.9;
@@ -23,7 +21,6 @@ Player.prototype.update = function () {
 
 Player.prototype.jump = function () {
     this.velocity += this.lift;
-    console.log('jumping');
 }
 
 
