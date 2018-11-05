@@ -102,7 +102,7 @@ Game.prototype.checkCollision = function () {
 Game.prototype.keepScore = function() {
   for (var i = 0; i < this.pipes.length; i++) {
     if (this.player.x === this.pipes[i].x + this.pipes[i].width/2) {
-      var score = this.score ++;
+      var score = this.score ++ +1;
       // addition
       this.updateScore(score);
       
