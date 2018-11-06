@@ -78,3 +78,12 @@ font-family: 'powerpuff_girlsregular';
     color: #fff;
     font-size: 20px;
 }
+
+h1 {
+    position: absolute;
+    font-family: 'powerpuff_girlsregular';
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+}

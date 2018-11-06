@@ -13,15 +13,15 @@ function main() {
   var gameOverScreen;
   var startButton;
   var restartButton;
-  //add
   var scoreElement;
 
   function buildSplash() {
     splashScreen = buildDOM(`
       <main>
-      <canvas id="splash-screen" width="774px" height="435px">
+      <canvas id="splash-screen" width="774px" height="400px">
       
           </canvas>  
+          <h1>BUBBLE BABY</h1>
         <button>Start</button>
       </main>
     `)
@@ -47,8 +47,10 @@ function main() {
       <p>Score</p>
       <p class="score">0 </p>
       </div>
-        <canvas id="game-screen" width="774px" height="435px">
+        <canvas id="game-screen" width="774px" height="400px">
     <img id="source" src="bubbles.png">
+    <img id="pipe-bottom" src="pipe-bottom-transparent.png">
+    <img id="pipe-top" src="pipe-top.png">
         </canvas>   
       </main>
     `);
@@ -79,7 +81,7 @@ function main() {
     gameOverScreen = buildDOM(`
       <main>
       <div id ="game-over-container">
-        <canvas id="game-over-screen" width="774px" height = 435px">
+        <canvas id="game-over-screen" width="774px" height = 400px">
         
         </canvas>
         <button id="game-over-btn">Restart</button>

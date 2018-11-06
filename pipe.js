@@ -1,20 +1,22 @@
 'use strict';
 
-function Pipe(canvasElement) {
+function Pipe(canvasElement, speed) {
 
     this.canvasElement = canvasElement;
-    this.top = Math.random(this.canvasElement.height / 2) * 150;
-    this.bottom = Math.random(this.canvasElement.height / 2) * 150;
-    this.width = 20;
+    this.top = Math.random(this.canvasElement.height / 2) * 200;
+    this.bottom = Math.random(this.canvasElement.height / 2) * 200;
+    this.width = 40;
     this.x = this.canvasElement.width;
     this.ctx = canvasElement.getContext('2d');
-    this.speed = 3;
+    this.speed = speed;
     
 
     Pipe.prototype.draw = function () {
-        this.ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
-        this.ctx.fillRect(this.x, 0, this.width, this.top);
-        this.ctx.fillRect(this.x, this.canvasElement.height - this.bottom, this.width, this.bottom);
+        var pipeBottom = document.getElementById("pipe-bottom");
+        var pipeTop = document.getElementById("pipe-top");
+        this.ctx.drawImage(pipeBottom, this.x, this.canvasElement.height - this.bottom, this.width, this.bottom)
+        this.ctx.drawImage(pipeTop, this.x, 0, this.width, this.top);
+
     }
 
     Pipe.prototype.update = function () {
@@ -27,12 +29,11 @@ function Pipe(canvasElement) {
                 return true;
                 
         }
+        return false;
     }
-    return false;
 
     Pipe.prototype.offscreen = function () {
         return this.x < -this.width
     }
-
  
 }

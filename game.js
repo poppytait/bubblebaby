@@ -30,8 +30,7 @@ Game.prototype.start = function () {
 
 Game.prototype.startLoop = function () {
   this.player = new Player(this.canvasElement);
-  this.pipe = new Pipe(this.canvasElement);
-  this.pipes.push(new Pipe(this.canvasElement));
+ 
 
   var frames = 0;
 
@@ -39,7 +38,23 @@ Game.prototype.startLoop = function () {
 
     frames++;
     if (frames % 80 === 0) {
-      this.pipes.push(new Pipe(this.canvasElement));
+      if (this.score < 3) {
+        this.pipes.push(new Pipe(this.canvasElement, 5));
+      } else if (this.score < 5) {
+        this.pipes.forEach(function(item, index) {
+          if(item.speed === 3) {
+            this.pipes.splice(index,1);
+          }
+        }.bind(this))
+        this.pipes.push(new Pipe(this.canvasElement, 10));
+      }  else if (this.score < 10) {
+        this.pipes.forEach(function(item, index) {
+          if(item.speed === 6) {
+            this.pipes.splice(index,1);
+          }
+        }.bind(this))
+        this.pipes.push(new Pipe(this.canvasElement, 12));
+      }
     }
 
     this.updateAll();
@@ -64,7 +79,9 @@ Game.prototype.startLoop = function () {
 
 Game.prototype.updateAll = function () {
   this.player.update();
-  this.pipe.update();
+  for (var i = 0; i < this.pipes.length; i++) {
+      this.pipes[i].update();
+  }
 }
 
 Game.prototype.clearAll = function () {
@@ -73,13 +90,11 @@ Game.prototype.clearAll = function () {
 
 Game.prototype.drawAll = function () {
   this.player.draw();
-
   for (var i = 0; i < this.pipes.length; i++) {
-    this.pipes[i].draw();
-    this.pipes[i].update();
+      this.pipes[i].draw();
   }
-
 }
+
 Game.prototype.saveGameOverCallback = function (callback) {
   this.gameOverCallback = callback;
 }
@@ -102,8 +117,11 @@ Game.prototype.checkCollision = function () {
 Game.prototype.keepScore = function() {
   for (var i = 0; i < this.pipes.length; i++) {
     if (this.player.x === this.pipes[i].x + this.pipes[i].width/2) {
-      var score = this.score ++ +1;
-      // addition
+      // = this.score ++ +1; 
+      var score = this.score ++;
+      //if (this.score = 3) {
+        
+     // }
       this.updateScore(score);
       
     } console.log(score);
