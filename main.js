@@ -55,11 +55,11 @@ function main() {
       </main>
     `);
     document.body.prepend(gameScreen);
-    //add
+    
     scoreElement = document.querySelector('.score');
     var canvasElement = document.querySelector('canvas');
     var game = new Game(canvasElement);
-    //addition
+    
     game.onPoints(updateScore);
 
     game.start();
@@ -72,18 +72,20 @@ function main() {
     scoreElement.innerText = score;
   }
 
-  function destroyGameScreen() {
+  function destroyGameScreen(score) {
+    console.log(score);
     gameScreen.remove();
-    buildGameOverScreen();
+    buildGameOverScreen(score);
   }
 
-  function buildGameOverScreen() {
+  function buildGameOverScreen(score) {
     gameOverScreen = buildDOM(`
       <main>
       <div id ="game-over-container">
         <canvas id="game-over-screen" width="774px" height = 400px">
         
         </canvas>
+        <p>SCORE: <span id="highscore">${score}</span></p>
         <button id="game-over-btn">Restart</button>
         </div>
       </main>  

@@ -99,46 +99,15 @@ Game.prototype.updateSpeed = function() {
       pipe.speed+=2
     }.bind(this))
   }
-
-
-  // if (this.score < 3) {
-  // } else if (this.score < 5) {
-  //   this.pipes.forEach(function (item, index) {
-  //     if (item.speed === 5) {
-  //       this.pipes.splice(index, 1);
-  //     }
-  //   }.bind(this))
-  //   this.pipes.push(new Pipe(this.canvasElement, 10));
-  // } else if (this.score < 10) {
-  //   this.pipes.forEach(function (item, index) {
-  //     if (item.speed === 10) {
-  //       this.pipes.splice(index, 1);
-  //     }
-  //   }.bind(this))
-  //   this.pipes.push(new Pipe(this.canvasElement, 12));
-  // } else if (this.score < 15) {
-  //   this.pipes.forEach(function (item, index) {
-  //     if (item.speed === 12) {
-  //       this.pipes.splice(index, 1);
-  //     }
-  //   }.bind(this))
-  //   this.pipes.push(new Pipe(this.canvasElement, 15))
-  // } else {
-  //   this.pipes.forEach(function(item, index) {
-  //     if (item.speed === 15) {
-  //       this.pipes.splice(index, 1);
-  //     }
-  //   }.bind(this))
-  //   this.pipes.push(new Pipe(this.canvasElement, 20))
-  // }
 }
 
 Game.prototype.saveGameOverCallback = function (callback) {
   this.gameOverCallback = callback;
 }
 
+
 Game.prototype.finishGame = function () {
-  this.gameOverCallback();
+  this.gameOverCallback(this.score);
   this.gameIsOver = true;
 }
 
