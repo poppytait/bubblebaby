@@ -6,10 +6,11 @@ function Game(canvasElement) {
   this.canvasElement = canvasElement;
   this.gameIsOver = false;
   this.collision = false;
-  this.score = 0; 
+  this.score = 0;
+  this.frameFactor = 80
+  this.pipeSpeed = 5;
 }
 
-var score = this.score;
 
 Game.prototype.start = function () {
 
@@ -17,7 +18,7 @@ Game.prototype.start = function () {
 
   this.handleKeyUp = function (event) {
     if (event.key === ' ') {
-    this.player.jump();
+      this.player.jump();
 
     }
   }.bind(this)
@@ -30,44 +31,29 @@ Game.prototype.start = function () {
 
 Game.prototype.startLoop = function () {
   this.player = new Player(this.canvasElement);
- 
+
 
   var frames = 0;
 
   var loop = function () {
 
     frames++;
-    if (frames % 80 === 0) {
-      if (this.score < 3) {
-        this.pipes.push(new Pipe(this.canvasElement, 5));
-      } else if (this.score < 5) {
-        this.pipes.forEach(function(item, index) {
-          if(item.speed === 3) {
-            this.pipes.splice(index,1);
-          }
-        }.bind(this))
-        this.pipes.push(new Pipe(this.canvasElement, 10));
-      }  else if (this.score < 10) {
-        this.pipes.forEach(function(item, index) {
-          if(item.speed === 6) {
-            this.pipes.splice(index,1);
-          }
-        }.bind(this))
-        this.pipes.push(new Pipe(this.canvasElement, 12));
-      }
+    if (frames % this.frameFactor === 0) {
+      this.pipes.push(new Pipe(this.canvasElement, this.pipeSpeed));
+      this.updateSpeed();
     }
-
+    
     this.updateAll();
     this.clearAll();
     this.keepScore();
     this.drawAll();
     this.checkCollision();
-
+    
     if (this.collision) {
       this.gameIsOver = true;
       this.finishGame();
     }
-
+    
     if (!this.gameIsOver) {
       requestAnimationFrame(loop);
     }
@@ -80,19 +66,71 @@ Game.prototype.startLoop = function () {
 Game.prototype.updateAll = function () {
   this.player.update();
   for (var i = 0; i < this.pipes.length; i++) {
-      this.pipes[i].update();
+    this.pipes[i].update();
   }
 }
 
 Game.prototype.clearAll = function () {
   this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
+  this.pipes.forEach(function(pipe, index) {
+    if(pipe.x < -pipe.width) {
+      this.pipes.splice(index, 1)
+    }
+  }.bind(this))
 }
 
 Game.prototype.drawAll = function () {
   this.player.draw();
   for (var i = 0; i < this.pipes.length; i++) {
-      this.pipes[i].draw();
+    this.pipes[i].draw();
   }
+}
+
+Game.prototype.updateSpeed = function() {
+  // checkScore
+  // if multiple of 5
+  // decresing factor
+  // increase speed of all pipes
+
+  if (this.score % 5 === 0 && this.score > 0) {
+    this.frameFactor = this.frameFactor - 5;
+    this.pipeSpeed+=2
+    this.pipes.forEach(function(pipe, index) {
+      pipe.speed+=2
+    }.bind(this))
+  }
+
+
+  // if (this.score < 3) {
+  // } else if (this.score < 5) {
+  //   this.pipes.forEach(function (item, index) {
+  //     if (item.speed === 5) {
+  //       this.pipes.splice(index, 1);
+  //     }
+  //   }.bind(this))
+  //   this.pipes.push(new Pipe(this.canvasElement, 10));
+  // } else if (this.score < 10) {
+  //   this.pipes.forEach(function (item, index) {
+  //     if (item.speed === 10) {
+  //       this.pipes.splice(index, 1);
+  //     }
+  //   }.bind(this))
+  //   this.pipes.push(new Pipe(this.canvasElement, 12));
+  // } else if (this.score < 15) {
+  //   this.pipes.forEach(function (item, index) {
+  //     if (item.speed === 12) {
+  //       this.pipes.splice(index, 1);
+  //     }
+  //   }.bind(this))
+  //   this.pipes.push(new Pipe(this.canvasElement, 15))
+  // } else {
+  //   this.pipes.forEach(function(item, index) {
+  //     if (item.speed === 15) {
+  //       this.pipes.splice(index, 1);
+  //     }
+  //   }.bind(this))
+  //   this.pipes.push(new Pipe(this.canvasElement, 20))
+  // }
 }
 
 Game.prototype.saveGameOverCallback = function (callback) {
@@ -114,18 +152,13 @@ Game.prototype.checkCollision = function () {
   };
 };
 
-Game.prototype.keepScore = function() {
+Game.prototype.keepScore = function () {
   for (var i = 0; i < this.pipes.length; i++) {
-    if (this.player.x === this.pipes[i].x + this.pipes[i].width/2) {
-      // = this.score ++ +1; 
-      var score = this.score ++;
-      //if (this.score = 3) {
-        
-     // }
-      this.updateScore(score);
-      
-    } console.log(score);
-  };
+    if (this.player.x > this.pipes[i].x && this.player.x < this.pipes[i].x + this.pipes[i].speed) {
+      this.score++;
+      this.updateScore(this.score);
+    }
+  }
 }
 
 Game.prototype.onPoints = function (callback) {

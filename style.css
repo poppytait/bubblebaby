@@ -59,9 +59,7 @@ button {
 position: absolute;
 font-family: 'powerpuff_girlsregular';
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  left: 45%;
   background-color: #FFC6D9;
   color: white;
   font-size: 20px;
@@ -69,7 +67,17 @@ font-family: 'powerpuff_girlsregular';
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  transition: all 1s;
+  
 }
+
+button#game-over-btn {
+    left: 44%
+}
+
+button:hover {
+    transform: scale(1.1);
+  }
 
 .score-div {
     width: 774px;
@@ -82,7 +90,7 @@ font-family: 'powerpuff_girlsregular';
 h1 {
     position: absolute;
     font-family: 'powerpuff_girlsregular';
-      top: 38%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
