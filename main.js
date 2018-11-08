@@ -14,6 +14,9 @@ function main() {
   var startButton;
   var restartButton;
   var scoreElement;
+  var instructionsButton;
+  var instructionsScreen;
+  var backButton;
 
   function buildSplash() {
     splashScreen = buildDOM(`
@@ -22,22 +25,57 @@ function main() {
       
           </canvas>  
           <h1>BUBBLE BABY</h1>
-        <button>Start</button>
+       <button class="start-btn">Start</button>
+      <button class="instructions-btn">Instructions</button>
       </main>
     `)
 
     document.body.prepend(splashScreen);
 
-    startButton = document.querySelector('button');
+    startButton = document.querySelector('.start-btn');
+    instructionsButton = document.querySelector('.instructions-btn');
 
     startButton.addEventListener('click', destroySplash);
+    instructionsButton.addEventListener('click', destroySplash);
   }
+
+  var flush = new Audio('Powerpuff.mp3');
+  flush.loop = true;
+  flush.play();
 
   function destroySplash() {
     splashScreen.remove();
     startButton.removeEventListener('click', destroySplash);
+    instructionsButton.removeEventListener('click', destroySplash);
+    startButton.addEventListener("click", flush.play());
 
-    buildGameScreen();
+    if (event.target.className === "start-btn") {
+      buildGameScreen();
+    } else {
+      buildInstructions();
+    }
+  }
+
+  function destroyInstructions() {
+    instructionsScreen.remove();
+    backButton.removeEventListener('click', destroyInstructions);
+    buildSplash();
+  }
+
+  function buildInstructions() {
+
+    instructionsScreen = buildDOM(`
+    <main> 
+    <h1>INSTRUCTIONS</h1>
+    <p>Use the spacebar to guide Bubbles through Townsville and avoided crashing into pipes as you go.</p>
+    <button class='back-btn'>Back</button>
+    </main>
+    `);
+
+    document.body.prepend(instructionsScreen);
+
+    backButton = document.querySelector('.back-btn');
+    backButton.addEventListener('click', destroyInstructions);
   }
 
   function buildGameScreen() {
@@ -51,15 +89,16 @@ function main() {
     <img id="source" src="bubbles.png">
     <img id="pipe-bottom" src="pipe-bottom-transparent.png">
     <img id="pipe-top" src="pipe-top.png">
+   
         </canvas>   
       </main>
     `);
     document.body.prepend(gameScreen);
-    
+
     scoreElement = document.querySelector('.score');
     var canvasElement = document.querySelector('canvas');
     var game = new Game(canvasElement);
-    
+
     game.onPoints(updateScore);
 
     game.start();
@@ -68,7 +107,7 @@ function main() {
   }
 
   function updateScore(score) {
-    
+
     scoreElement.innerText = score;
   }
 
@@ -86,7 +125,7 @@ function main() {
         
         </canvas>
         <p>SCORE: <span id="highscore">${score}</span></p>
-        <button id="game-over-btn">Restart</button>
+        <button class="game-over-btn">Restart</button>
         </div>
       </main>  
     `);
@@ -105,6 +144,7 @@ function main() {
   }
 
   buildSplash();
+
 }
 
 window.addEventListener('load', main);

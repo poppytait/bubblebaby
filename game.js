@@ -8,8 +8,14 @@ function Game(canvasElement) {
   this.collision = false;
   this.score = 0;
   this.frameFactor = 80
-  this.pipeSpeed = 5;
+  this.pipeSpeed = 10;
 }
+
+
+/*
+var flush = new Audio('Powerpuff.mp3');
+flush.loop = true; 
+flush.play(); */
 
 
 Game.prototype.start = function () {
@@ -26,6 +32,7 @@ Game.prototype.start = function () {
   document.addEventListener('keyup', this.handleKeyUp);
 
   this.startLoop();
+  
 
 }
 
@@ -59,6 +66,7 @@ Game.prototype.startLoop = function () {
     }
 
   }.bind(this);
+
 
   loop();
 }
