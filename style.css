@@ -56,7 +56,7 @@ canvas {
 
 
 button .start-btn{
-position: absolute;
+position: relative;
 font-family: 'powerpuff_girlsregular';
   top: 50%;
   left: 44%;
@@ -71,7 +71,7 @@ font-family: 'powerpuff_girlsregular';
 }
 
 button .instructions-btn {
-    position: absolute;
+    position: relative;
     font-family: 'powerpuff_girlsregular';
       top: 50%;
       left: 44%;
@@ -85,7 +85,7 @@ button .instructions-btn {
       transition: all 1s;
     }
  button .game-over-btn{
-     position: absolute;
+     position: relative;
         font-family: 'powerpuff_girlsregular';
        top: 50%;
        left: 44%;
@@ -115,10 +115,18 @@ button:hover {
 }
 
 h1 {
-    position: absolute;
+    position: relative;
     font-family: 'powerpuff_girlsregular';
       top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
+}
+
+section {
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 500px;
+    font-size: 40px;
+    position: relative; 
 }

@@ -66,9 +66,11 @@ function main() {
 
     instructionsScreen = buildDOM(`
     <main> 
-    <h1>INSTRUCTIONS</h1>
+    <section>
+    <h2>INSTRUCTIONS</h2>
     <p>Use the spacebar to guide Bubbles through Townsville and avoided crashing into pipes as you go.</p>
     <button class='back-btn'>Back</button>
+    </section>
     </main>
     `);
 
