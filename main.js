@@ -17,6 +17,7 @@ function main() {
   var instructionsButton;
   var instructionsScreen;
   var backButton;
+  var flush;
 
   function buildSplash() {
     splashScreen = buildDOM(`
@@ -45,18 +46,20 @@ function main() {
     instructionsButton.addEventListener('click', destroySplash);
   }
 
-  var flush = new Audio('Powerpuff.mp3');
-  flush.loop = true;
-  flush.play();
+  flush = new Audio('Powerpuff.mp3');
+  //flush.loop = true;
+  //flush.play();
 
   function destroySplash() {
     splashScreen.remove();
     startButton.removeEventListener('click', destroySplash);
     instructionsButton.removeEventListener('click', destroySplash);
-    startButton.addEventListener("click", flush.play());
+   
 
     if (event.target.className === "start-btn") {
       buildGameScreen();
+      flush.loop = true;
+      flush.play();
     } else {
       buildInstructions();
     }
