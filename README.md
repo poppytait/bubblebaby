@@ -1,5 +1,5 @@
 # bubblebaby
-Bubble Baby is a game where the player controls the bubble, attempting to guide it between oncoming tubes without hitting them.
+Bubble Baby is a game where the player controls Bubbles (Powerpuff Girls) by guiding her through oncoming pipes whilst trying not to get hit. 
 
 ## MVP (DOM-CANVAS)
 CANVAS. The MVP is a game where the player guides a ball through columns. 
