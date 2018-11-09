@@ -24,9 +24,15 @@ function main() {
       <canvas id="splash-screen" width="774px" height="400px">
       
           </canvas>  
+          
           <h1>BUBBLE BABY</h1>
+          <div class="buttons">
        <button class="start-btn">Start</button>
-      <button class="instructions-btn">Instructions</button>
+      <button class="instructions-btn">How To Play</button>
+      </div>
+      <footer>
+      Poppy Tait 2018
+      </footer>
       </main>
     `)
 
@@ -67,10 +73,11 @@ function main() {
     instructionsScreen = buildDOM(`
     <main> 
     <section>
-    <h2>INSTRUCTIONS</h2>
-    <p>Use the spacebar to guide Bubbles through Townsville and avoided crashing into pipes as you go.</p>
-    <button class='back-btn'>Back</button>
+    <h2>How To Play</h2>
+    <p span class="instructions-text">Use the spacebar to guide Bubbles through Townsville. Avoid crashing into pipes as you go!</span></p>
     </section>
+    <span class='back-btn'><button>Back</button></span>
+    
     </main>
     `);
 
@@ -84,11 +91,11 @@ function main() {
     gameScreen = buildDOM(`
       <main>   
       <div class = "score-div">
-      <p>Score</p>
-      <p class="score">0 </p>
+      <p>Score: <span class="score">0</span></p>
+      
       </div>
         <canvas id="game-screen" width="774px" height="400px">
-    <img id="source" src="bubbles.png">
+    <img id="source" src="new-bubbles.png">
     <img id="pipe-bottom" src="pipe-bottom-transparent.png">
     <img id="pipe-top" src="pipe-top.png">
    
@@ -126,7 +133,10 @@ function main() {
         <canvas id="game-over-screen" width="774px" height = 400px">
         
         </canvas>
-        <p>SCORE: <span id="highscore">${score}</span></p>
+        <div class="gameoverdiv">
+          <div class="score-display">
+           <p>SCORE: <span id="highscore">${score}</span></p>
+          </div>
         <button class="game-over-btn">Restart</button>
         </div>
       </main>  

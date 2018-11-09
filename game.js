@@ -7,7 +7,7 @@ function Game(canvasElement) {
   this.gameIsOver = false;
   this.collision = false;
   this.score = 0;
-  this.frameFactor = 80
+  this.frameFactor = 60;
   this.pipeSpeed = 10;
 }
 
