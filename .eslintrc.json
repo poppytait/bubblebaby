@@ -1,0 +1,26 @@
+{
+    "extends": "standard",
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "globals": {
+      "document": false,
+      "window": false,
+      "console": false,
+      "Game": false,
+      "Main": false,
+      "Player": false,
+      "Pipe": false
+    },
+    "rules": {
+      "indent": [
+        2,
+        2
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+}
