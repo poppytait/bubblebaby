@@ -11,7 +11,8 @@
       "Game": false,
       "Main": false,
       "Player": false,
-      "Pipe": false
+      "Pipe": false,
+      "Audio": false
     },
     "rules": {
       "indent": [

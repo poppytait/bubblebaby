@@ -1,5 +1,5 @@
 'use strict';
-let buildDOM = html => {
+const buildDOM = html => {
   const div = document.createElement('div');
   div.innerHTML = html;
   return div.children[0];
@@ -43,7 +43,7 @@ const main = () => {
 
   flush = new Audio('Powerpuff.mp3');
 
-  const destroySplash = () => {
+  const destroySplash = (event) => {
     splashScreen.remove();
     startButton.removeEventListener('click', destroySplash);
     instructionsButton.removeEventListener('click', destroySplash);
@@ -66,11 +66,11 @@ const main = () => {
   const buildInstructions = () => {
     instructionsScreen = buildDOM(`
   <main> 
-  <section>
-  <h2>How To Play</h2>
-  <p span class="instructions-text">Use the spacebar to guide Bubbles through Townsville. Avoid crashing into pipes as you go!</span></p>
-  </section>
-  <span class='back-btn'><button>Back</button></span>
+    <section>
+      <h2>How To Play</h2>
+        <p span class="instructions-text">Use the spacebar to guide Bubbles through Townsville. Avoid crashing into pipes as you go!</span></p>
+    </section>
+   <span class='back-btn'><button>Back</button></span>
   
   </main>
   `);
@@ -84,16 +84,14 @@ const main = () => {
   const buildGameScreen = () => {
     gameScreen = buildDOM(`
   <main>   
-  <div class = "score-div">
-  <p>Score: <span class="score">0</span></p>
-  
-  </div>
-    <canvas id="game-screen" width="774px" height="400px">
-<img id="source" src="new-bubbles.png">
-<img id="pipe-bottom" src="pipe-bottom-transparent.png">
-<img id="pipe-top" src="pipe-top.png">
-
-    </canvas>   
+    <div class = "score-div">
+     <p>Score: <span class="score">0</span></p>
+    </div>
+      <canvas id="game-screen" width="774px" height="400px">
+        <img id="source" src="new-bubbles.png">
+        <img id="pipe-bottom" src="pipe-bottom-transparent.png">
+        <img id="pipe-top" src="pipe-top.png">
+      </canvas>   
   </main>
 `);
     document.body.prepend(gameScreen);
@@ -125,12 +123,12 @@ const main = () => {
     <canvas id="game-over-screen" width="774px" height = 400px">
     
     </canvas>
-    <div class="gameoverdiv">
-      <div class="score-display">
-       <p>SCORE: <span id="highscore">${score}</span></p>
-      </div>
+  <div class="gameoverdiv">
+  <div class="score-display">
+    <p>SCORE: <span id="highscore">${score}</span></p>
+  </div>
     <button class="game-over-btn">Restart</button>
-    </div>
+  </div>
   </main>  
 `);
 

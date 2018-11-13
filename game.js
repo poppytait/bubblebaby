@@ -15,11 +15,11 @@ class Game {
   start () {
     this.ctx = this.canvasElement.getContext('2d');
 
-    this.handleKeyUp = function (event) {
+    this.handleKeyUp = event => {
       if (event.key === ' ') {
         this.player.jump();
       }
-    }.bind(this);
+    };
 
     document.addEventListener('keyup', this.handleKeyUp);
 
@@ -31,7 +31,7 @@ class Game {
 
     let frames = 0;
 
-    const loop = function () {
+    const loop = () => {
       frames++;
       if (frames % this.frameFactor === 0) {
         this.pipes.push(new Pipe(this.canvasElement, this.pipeSpeed));
@@ -50,9 +50,9 @@ class Game {
       }
 
       if (!this.gameIsOver) {
-        requestAnimationFrame(loop);
+        window.requestAnimationFrame(loop);
       }
-    }.bind(this);
+    };
 
     loop();
   }
@@ -65,11 +65,11 @@ class Game {
   }
   clearAll () {
     this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
-    this.pipes.forEach(function (pipe, index) {
+    this.pipes.forEach((pipe, index) => {
       if (pipe.x < -pipe.width) {
         this.pipes.splice(index, 1);
       }
-    }.bind(this));
+    });
   }
 
   drawAll () {
@@ -83,7 +83,7 @@ class Game {
     if (this.score % 5 === 0 && this.score > 0) {
       this.frameFactor = this.frameFactor - 5;
       this.pipeSpeed += 2;
-      this.pipes.forEach(function (pipe, index) {
+      this.pipes.forEach((pipe, index) => {
         pipe.speed += 2;
       });
     }
